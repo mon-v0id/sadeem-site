@@ -156,7 +156,7 @@ continue after the licence ends.
 
 ## 12. General
 
-- **Governing law.** These terms are governed by the laws of the country where the developer is established, except
+- **Governing law.** These terms are governed by the laws of the United Arab Emirates, except
   where the law of the country you live in gives you protections that cannot
   be overridden.
 - **Severability.** If any part of these terms is found unenforceable, the rest
