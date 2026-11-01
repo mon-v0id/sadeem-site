@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Data — Sadeem</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header><a class="brand" href="/">Sadeem</a>
+<nav><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav></header>
+<main>
+<h1>Sadeem Open Data</h1>
+<p>Sadeem's reference table, used to add your own objects to the app, is built from two open catalogues published under the <strong>Creative Commons Attribution-ShareAlike 4.0 International</strong> licence (CC BY-SA 4.0):</p>
+<ul><li><strong>OpenNGC</strong> by Mattia Verga — <a href="https://github.com/mattiaverga/OpenNGC">https://github.com/mattiaverga/OpenNGC</a></li><li><strong>HYG Stellar Database 4.4</strong> by David Nash (astronexus) — <a href="https://codeberg.org/astronexus/hyg">https://codeberg.org/astronexus/hyg</a></li></ul>
+<p>Our adapted table is available here <strong>under the same licence, CC BY-SA 4.0</strong>. You may share and adapt it, including commercially, as long as you credit the original authors and Sadeem, and share your adaptations under the same licence.</p>
+<h2>Files</h2>
+<ul><li><a href="/data/reference-objects.json">reference-objects.json</a> — the adapted table (CC BY-SA 4.0)</li><li><a href="/data/LICENSE-CC-BY-SA-4.0.txt">LICENSE-CC-BY-SA-4.0.txt</a> — the full licence</li><li><a href="/data/reference_tables.py">reference_tables.py</a> — the script that builds the table, published so the changes can be seen (MIT licence)</li></ul>
+<h2>What we changed</h2>
+<p>The table converts both catalogues into one compact file and trims them:</p>
+<ul><li>stars come from HYG: every star brighter than magnitude 6.5 and every star with a proper name;</li><li>deep-sky objects come from OpenNGC; its star, asterism, association, duplicate, group, non-existent and nova entries are left out, and duplicates become aliases of the object they repeat;</li><li>coordinates are converted to decimal degrees, and each row records which of Sadeem's own objects it is, if any.</li></ul>
+<p>Attribution: "Contains data from OpenNGC by Mattia Verga and the HYG Stellar Database by David Nash, adapted by Sadeem, CC BY-SA 4.0."</p>
+<p>This licence applies only to the files on this page. The rest of Sadeem — its software, text, lessons, illustrations and design — is not covered by it; see the <a href="/terms/">Terms of Use</a>.</p>
+</main>
+<footer>© 2026 Mohammad Kanbar · <a href="mailto:support@sadeem-app.com">support@sadeem-app.com</a></footer>
+</body>
+</html>
