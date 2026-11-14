@@ -6,7 +6,8 @@ app ships (`Sadeem/Resources/Reference/reference-objects.json`):
 * **OpenNGC** (Mattia Verga) — the NGC and IC catalogues and their addendum:
   galaxies, clusters, nebulae, planetary nebulae, supernova remnants.
 * **HYG 4.4** (David Nash, astronexus) — stars: every star brighter than
-  magnitude 6.5, the naked-eye limit, and every star with a proper name.
+  magnitude 6.5, the naked-eye limit, and every star with a proper name,
+  each with its B−V colour index (`ci`), which colours it on the free Sky Map.
 
 What is left out, and why:
 
@@ -22,6 +23,10 @@ What is left out, and why:
 Each row records which of Sadeem's own objects it is, when it is one, so the
 app opens the existing page instead of adding a copy.
 
+Beside it, `deep-stars.bin` holds HYG's stars from magnitude 6.5 to 9 that have
+no proper name, in ten bytes each: the free Sky Map shows them as it zooms in,
+and they are not in the table people search.
+
 The raw sources are downloaded into `Research/External/ReferenceTables/` (not
 committed); this script is the only path from them to the app.
 """
@@ -31,13 +36,16 @@ import json
 import math
 import pathlib
 import re
+import struct
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SOURCES = ROOT / "Research/External/ReferenceTables"
 OUTPUT = ROOT / "Sadeem/Resources/Reference/reference-objects.json"
 OBJECTS = ROOT / "Sadeem/Resources/Catalog/objects.json"
+DEEP_STARS = ROOT / "Sadeem/Resources/Reference/deep-stars.bin"
 
 NAKED_EYE_LIMIT = 6.5
+DEEP_STAR_LIMIT = 9.0
 
 # OpenNGC type → Sadeem kind. A type absent here is left out.
 OPENNGC_KINDS = {
@@ -184,6 +192,10 @@ def star_name(row):
     return (names[0], names[1:]) if names else (None, [])
 
 
+def _rounded(value, places):
+    return None if value is None else round(value, places)
+
+
 def hyg_rows(rows):
     kept = []
     for row in rows:
@@ -208,8 +220,26 @@ def hyg_rows(rows):
             "name": name,
             "aliases": aliases,
             "source": "hyg",
+            # B−V, HYG's colour index: the free Sky Map tints each star by it.
+            "ci": _rounded(number_or_none(row.get("ci", "")), 3),
         })
     return kept
+
+
+def deep_star_bytes(rows):
+    """The stars past the table: right ascension and declination as
+    little-endian float32 degrees, the magnitude above 6.5 in hundredths, the
+    B−V index in fiftieths (-128 where unknown)."""
+    out = bytearray()
+    for row in rows:
+        magnitude = number_or_none(row["mag"])
+        if row["proper"] or magnitude is None or not NAKED_EYE_LIMIT < magnitude <= DEEP_STAR_LIMIT:
+            continue
+        index = number_or_none(row.get("ci", ""))
+        code = -128 if index is None else max(-127, min(127, round(index * 50)))
+        out += struct.pack("<ffBb", float(row["ra"]) * 15.0, float(row["dec"]),
+                           round((magnitude - NAKED_EYE_LIMIT) * 100), code)
+    return bytes(out)
 
 
 # ---------------------------------------------------------------- matching
@@ -292,7 +322,7 @@ def _nearest(record, candidates, radius_arcmin):
 # ---------------------------------------------------------------- output
 
 COLUMNS = ["id", "kind", "ra", "dec", "mag", "magBand", "major", "minor",
-           "constellation", "name", "aliases", "source", "sadeemID"]
+           "constellation", "name", "aliases", "source", "sadeemID", "ci"]
 
 
 def table(rows):
@@ -323,6 +353,7 @@ def build():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(table(rows), ensure_ascii=False, separators=(",", ":")) + "\n",
                       encoding="utf-8")
+    DEEP_STARS.write_bytes(deep_star_bytes(hyg))
     return rows
 
 
