@@ -1,6 +1,6 @@
 # Sadeem Privacy Policy
 
-**Effective date:** 2 November 2026
+**Effective date:** 14 November 2026
 
 Sadeem is a stargazing app made by Mohammad Kanbar ("we", "us").
 This policy explains what happens to your information when you use Sadeem on
@@ -8,21 +8,29 @@ iPhone, iPad or Mac.
 
 **The short version:** Sadeem does not collect your personal data. We have no
 accounts, no servers that store your information, no advertising, no analytics
-and no tracking. What you create in Sadeem stays on your device, and in your
-own iCloud account if you turn sync on. We cannot see it.
+and no tracking. What you create in Sadeem stays on your device and, when your
+device is signed in to iCloud, in your own private iCloud database, so it is
+the same on your other devices. You can turn this off in Sadeem's Settings. We
+cannot see it.
 
 ---
 
-## 1. Information that stays on your device
+## 1. Information kept on your device
 
-Sadeem keeps the following on your device only:
+Sadeem keeps the following on your device:
 
 - your observing journal, notes, favourites, reminders and saved observing
   sites;
 - your lesson progress, settings and preferences;
 - recent sky and weather results, kept so the app works when you are offline.
 
+With iCloud Sync on, your journal, notes, favourites, reminders, saved
+observing sites, lesson progress and settings are also kept in your private
+iCloud database (see section 3).
+
 We do not receive any of this. Deleting the app deletes it from that device.
+What is in your iCloud database stays there until you delete it in your
+device's iCloud settings.
 
 ## 2. Your location
 
@@ -39,14 +47,19 @@ Your location is used in three ways:
   <https://www.apple.com/legal/privacy/>.
 - **Sent to Apple's geocoding service**, to show a place's name and time zone.
 
-We do not receive your location, and we do not store it anywhere except on your
-device (for example, with a saved site or a journal entry you create).
+When you search for a place by name, the words you type are sent to Apple Maps
+to find it. Your own location is not sent with the search.
 
-## 3. iCloud sync (optional)
+We do not receive your location. It is stored only on your device and, with
+iCloud Sync on, in your private iCloud database — for example with a saved
+site or a journal entry you create.
 
-If you turn on iCloud Sync, your journal, notes, favourites, progress and
-settings are stored in **your private iCloud database**, run by Apple under
-your Apple Account. We cannot access your private iCloud data. You can turn
+## 3. iCloud sync
+
+iCloud Sync is on when your device is signed in to iCloud. Your journal
+(including the place and time of each night), notes, favourites, reminders,
+saved observing sites, lesson progress and settings are stored in your
+private iCloud database, run by Apple under your Apple Account. We cannot access your private iCloud data. You can turn
 sync off at any time in Sadeem's Settings, and manage or delete your iCloud
 data in your device's iCloud settings.
 
@@ -73,8 +86,9 @@ policy for how Apple handles purchases.
 ## 7. Sharing and printing
 
 When you share or print something from Sadeem (such as a sky chart), the app
-hands it to the destination you choose through Apple's share sheet. Nothing is
-shared unless you choose to share it.
+hands it to the destination you choose through Apple's share sheet. A printed
+or shared sky chart names the area it was made for; it does not carry your
+coordinates. Nothing is shared unless you choose to share it.
 
 ## 8. Things we do not do
 
