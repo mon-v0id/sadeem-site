@@ -1,7 +1,7 @@
 """Builds the reference table an observer adds objects from.
 
 Two open catalogues, both CC BY-SA 4.0, converted into one compact file the
-app ships (`Sadeem/Resources/Reference/reference-objects.json`):
+app ships (`SkySeeker/Resources/Reference/reference-objects.json`):
 
 * **OpenNGC** (Mattia Verga) — the NGC and IC catalogues and their addendum:
   galaxies, clusters, nebulae, planetary nebulae, supernova remnants.
@@ -40,9 +40,9 @@ import struct
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SOURCES = ROOT / "Research/External/ReferenceTables"
-OUTPUT = ROOT / "Sadeem/Resources/Reference/reference-objects.json"
-OBJECTS = ROOT / "Sadeem/Resources/Catalog/objects.json"
-DEEP_STARS = ROOT / "Sadeem/Resources/Reference/deep-stars.bin"
+OUTPUT = ROOT / "SkySeeker/Resources/Reference/reference-objects.json"
+OBJECTS = ROOT / "SkySeeker/Resources/Catalog/objects.json"
+DEEP_STARS = ROOT / "SkySeeker/Resources/Reference/deep-stars.bin"
 
 NAKED_EYE_LIMIT = 6.5
 DEEP_STAR_LIMIT = 9.0
